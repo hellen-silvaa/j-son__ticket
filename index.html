@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <title>Baratex</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./scripts/main.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header-page">
+            <h1 class="header-page__title">Baratex</h1>
+            <nav class="header-page__nav">
+                <ul class="header-page__nav-list">
+                    <li class="header-page__nav-item">
+                        <a href="javascript:void(0);" onclick="toggleCart()">
+                            <span class="material-symbols-outlined" id="shoppingCartIcon">shopping_cart</span>
+                        </a>
+                    </li>
+                    <li class="header-page__nav-item">
+                        <a href="#linkuser">
+                            <span class="material-symbols-outlined">account_circle</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="main-content">
+            <!-- tela principal -->
+            <section class="banner">
+                <div class="banner__column banner__column--md-4 banner__column--sm-6 banner__column--xs-12">
+                    <div class="card">
+                        <div class="card__inner">
+                            <div class="card__cover card__cover--item-a card__front">
+                                <h1 class="card__title">Shows</h1>
+                                <span class="card__price material-symbols-outlined">genres</span>
+                            </div>
+                            <div class="card__back">
+                                <a href="#shows">Melhores shows</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner__column banner__column--md-4 banner__column--sm-6 banner__column--xs-12">
+                    <div class="card">
+                        <div class="card__inner">
+                            <div class="card__cover card__cover--item-b card__front">
+                                <h1 class="card__title">Filmes</h1>
+                                <span class="card__price material-symbols-outlined">movie</span>
+                            </div>
+                            <div class="card__back">
+                                <a href="#filmes">Lançamentos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner__column banner__column--md-4 banner__column--sm-6 banner__column--xs-12">
+                    <div class="card">
+                        <div class="card__inner">
+                            <div class="card__cover card__cover--item-c card__front">
+                                <h1 class="card__title">Eventos</h1>
+                                <span class="card__price material-symbols-outlined">person_play</span>
+                            </div>
+                            <div class="card__back">
+                                <a href="#eventos">Conhecer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- nova seção -->
+            <section class="search-events">
+                <h2 class="search-events__title">Buscar Eventos</h2>
+                <p class="search-events__description">Encontre eventos na sua cidade e região.</p>
+                <div class="search-events__form">
+                    <div class="search-events__input-group">
+                        <label for="city" class="search-events__label">Cidade:</label>
+                        <select id="city" class="search-events__input">
+                            <option value="sao-paulo">São Paulo</option>
+                            <option value="rio-de-janeiro">Rio de Janeiro</option>
+                            <option value="bahia">Bahia</option>
+                        </select>
+                    </div>
+                    <div class="search-events__input-group">
+                        <label for="event" class="search-events__label">Evento:</label>
+                        <select id="event" class="search-events__input">
+                            <option value="show">Show</option>
+                            <option value="filme">Filme</option>
+                            <option value="evento">Evento</option>
+                        </select>
+                    </div>
+                    <button class="search-events__button">Buscar Eventos</button>
+                </div>
+            </section>
+            <!-- carrossel de filmes -->
+            <section class="container-show opcoes" id="filmes">
+                <h2 class="container-show__title">FILMES</h2>
+                <div class="carrossel">
+                    <div class="carrossel__buttons">
+                        <button class="carrossel__button carrossel__button--left" onclick="moveLeft('filmes')">&#10094;</button>
+                        <button class="carrossel__button carrossel__button--right" onclick="moveRight('filmes')">&#10095;</button>
+                    </div>
+                    <div class="carrossel__track-container">
+                        <div class="carrossel__track" id="filmesContainer">
+                            <!-- Filmes serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- carrossel de shows -->
+            <section class="container-show opcoes" id="shows">
+                <h2 class="container-show__title">SHOWS</h2>
+                <div class="carrossel">
+                    <div class="carrossel__buttons">
+                        <button class="carrossel__button carrossel__button--left" onclick="moveLeft('shows')">&#10094;</button>
+                        <button class="carrossel__button carrossel__button--right" onclick="moveRight('shows')">&#10095;</button>
+                    </div>
+                    <div class="carrossel__track-container">
+                        <div class="carrossel__track">
+                            <!-- Shows serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Carrinho de Compras Lateral -->
+        <div id="carrinho" class="carrinho">
+            <header class="cart__header">
+                <div class="cart__title"><strong id="cartItemCount">Seu carrinho tem:</strong></div>
+                <i class="ph ph-x cart__close" onclick="toggleCart()">x</i>
+            </header>
+            <main class="cart__main"></main>
+            <footer class="cart__footer">
+                <div class="cart__total">
+                    <span>Total:</span>
+                    <strong id="cartTotalPrice">R$ 0,00</strong>
+                </div>
+                <div class="cart__cupon">
+                    <span class="material-symbols-outlined">local_activity</span>
+                    <span>Adicionar cupom</span>
+                </div>
+                <button class="cart__checkout">Finalizar compra</button>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

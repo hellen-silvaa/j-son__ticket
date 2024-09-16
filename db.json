@@ -1,0 +1,212 @@
+{
+"filmes":[
+    {
+        "id": 1,
+        "nome": "Coringa: Delírio a dois",
+        "genero": "Drama",
+        "ano": 2024,
+        "preco": 52.44,
+         "imagem": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/d04aea47-dab9-46ac-8c06-e9193898ceb2.webp"
+      },
+    {
+        "id": 2,
+        "nome": "Robô selvagem",
+        "genero": "Animação",
+        "ano": 2024,
+        "preco": 70.20,
+        "imagem": "https://www.universalpics.com.br/tl_files/content/movies/wild_robot/posters/02.jpg"
+    },
+    {
+        "id": 3,
+        "nome": "Look back",
+        "genero": "Anime",
+        "ano": 2024,
+        "preco": 20.35,
+        "imagem":"https://ingresso-a.akamaihd.net/prd/img/movie/look-back/342d9331-c4a9-4d0c-a214-24f2e060e6cb.webp"
+    },
+    {
+        "id": 4,
+        "nome": "Estomago 2: O Poderoso Chef ",
+        "genero": "Comédia",
+        "ano": 2024,
+        "preco": 40.00,
+        "imagem":"https://s2-oglobo.glbimg.com/6P5lNsWzWSfM7TJbq9Z6GiHYEss=/0x0:1080x1350/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/1/i/uKX5eRQcaBuCLUgYchaQ/estomago2-final02-4x5.jpg"
+    },
+    {
+        "id": 5,
+        "nome": "Kraven - o caçador",
+        "genero": "Ação",
+        "ano": 2024,
+        "preco": 25.20,
+        "imagem":"https://upload.wikimedia.org/wikipedia/pt/a/a9/Kraven_the_Hunter_poster.jpg"
+    },
+    {
+        "id": 6,
+        "nome": "Mufasa: the lion king",
+        "genero": "Aventura",
+        "ano": 2024,
+        "preco": 28.90,
+        "imagem":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeX0fj_jPXQzxV_Nr0Rt9jccHlg-M04jV_Fw&s"
+    },
+    {
+        "id": 7,
+        "nome": "Robopocaleyps",
+        "genero": "Ficção Científica",
+        "ano": 2025,
+        "preco": 60.23,
+        "imagem":"https://m.media-amazon.com/images/I/51gEjEEBQ5L._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        "id": 8,
+        "nome": "Zelda",
+        "genero": "Aventura",
+        "ano": 2025,
+        "preco": 21.65,
+        "imagem":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQwwfhc4g8lzVoJ9lVALCWRw5q_NJ8OPn1vg&s"
+    },
+    {
+        "id": 9,
+        "nome": "Homem-Aranha 4",
+        "genero": "Ação",
+        "ano": 2025,
+        "preco": 80.42,
+        "imagem":"https://forum.cinemaemcena.com.br/uploads/monthly_2023_02/FB_IMG_1675900220033.jpg.d58fe3b5ec19f37168fa6c74b2d04ac2.jpg"
+    },
+    {
+        "id": 10,
+        "nome": "Sonic 3",
+        "genero": "Animação",
+        "ano": 2025,
+        "preco": 70.20,
+        "imagem":"https://br.web.img2.acsta.net/pictures/24/01/23/19/39/5587494.jpg"
+    }
+],
+"shows":[
+    {
+        "id": 1,
+        "nome": "The Beatles",
+        "genero": "Rock",
+        "ano": 1960,
+        "preco": 15.68,
+        "imagem":""
+    },
+    {
+        "id": 2,
+        "nome": "Queen",
+        "genero": "Rock",
+        "ano": 1970,
+        "preco": 29.57,
+        "imagem":""
+    },
+    {
+        "id": 3,
+        "nome": "Elton John",
+        "genero": "Pop",
+        "ano": 1969
+    },
+    {
+        "id": 4,
+        "nome": "Michael Jackson",
+        "genero": "Pop",
+        "ano": 1964
+    },
+    {
+        "id": 5,
+        "nome": "Madonna",
+        "genero": "Pop",
+        "ano": 1979
+    },
+    {
+        "id": 6,
+        "nome": "The Rolling Stones",
+        "genero": "Rock",
+        "ano": 1962
+    },
+    {
+        "id": 7,
+        "nome": "U2",
+        "genero": "Rock",
+        "ano": 1976
+    },
+    {
+        "id": 8,
+        "nome": "Pink Floyd",
+        "genero": "Rock",
+        "ano": 1965
+    },
+    {
+        "id": 9,
+        "nome": "Led Zeppelin",
+        "genero": "Rock",
+        "ano": 1968
+    },
+    {
+        "id": 10,
+        "nome": "AC/DC",
+        "genero": "Rock",
+        "ano": 1973
+    }
+],
+"eventos":[
+    {
+        "id": 1,
+        "nome": "Rock in Rio",
+        "genero": "Rock",
+        "ano": 1985
+    },
+    {
+        "id": 2,
+        "nome": "Lollapalooza",
+        "genero": "Rock",
+        "ano": 1991
+    },
+    {
+        "id": 3,
+        "nome": "Tomorrowland",
+        "genero": "Eletrônica",
+        "ano": 2005
+    },
+    {
+        "id": 4,
+        "nome": "Ultra Music Festival",
+        "genero": "Eletrônica",
+        "ano": 1999
+    },
+    {
+        "id": 5,
+        "nome": "São João",
+        "genero": "Forró",
+        "ano": 1982
+    },
+    {
+        "id": 6,
+        "nome": "Festa do Peão de Barretos",
+        "genero": "Sertanejo",
+        "ano": 1956
+    },
+    {
+        "id": 7,
+        "nome": "Festival de Verão de Salvador",
+        "genero": "Axé",
+        "ano": 1999
+    },
+    {
+        "id": 8,
+        "nome": "Festival de Parintins",
+        "genero": "Boi-Bumbá",
+        "ano": 1965
+    },
+    {
+        "id": 9,
+        "nome": "Festival de Jazz de Montreux",
+        "genero": "Jazz",
+        "ano": 1967
+    },
+    {
+        "id": 10,
+        "nome": "Festival de Cannes",
+        "genero": "Cinema",
+        "ano": 1946
+    }
+]
+}
