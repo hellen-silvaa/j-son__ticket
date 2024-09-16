@@ -100,7 +100,7 @@
             <!-- carrossel de filmes -->
             <section class="container-show opcoes" id="filmes">
                 <h2 class="container-show__title">FILMES</h2>
-                <div class="carrossel">
+                <div id="carrossel" class="carrossel">
                     <div class="carrossel__buttons">
                         <button class="carrossel__button carrossel__button--left" onclick="moveLeft('filmes')">&#10094;</button>
                         <button class="carrossel__button carrossel__button--right" onclick="moveRight('filmes')">&#10095;</button>
@@ -132,10 +132,13 @@
         <!-- Carrinho de Compras Lateral -->
         <div id="carrinho" class="carrinho">
             <header class="cart__header">
-                <div class="cart__title"><strong id="cartItemCount">Seu carrinho tem:</strong></div>
-                <i class="ph ph-x cart__close" onclick="toggleCart()">x</i>
+                <div class="cart__title">Seu carrinho:</div>
+                <i class="material-symbols-outlined cart__close" onclick="toggleCart()">close</i>
             </header>
-            <main class="cart__main"></main>
+            <main class="cart__main">
+       
+            </main>
+
             <footer class="cart__footer">
                 <div class="cart__total">
                     <span>Total:</span>

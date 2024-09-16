@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const items = Array.from(track.children);
         const itemWidth = items[0].getBoundingClientRect().width;
 
-        // Clone the items to create an infinite loop effect
+        // Clonar os itens para criar um efeito de loop infinito
         items.forEach(item => {
             const clone = item.cloneNode(true);
             track.appendChild(clone);
@@ -56,6 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setInterval(moveRight, 3000); 
     });
+
+    // Adicionar o botão "Close" na seção do carrinho
+    const carrinho = document.getElementById('carrinho');
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.classList.add('cart__close-button');
+    carrinho.appendChild(closeButton);
+
+    // Adicionar evento de clique ao botão "Close"
+    closeButton.addEventListener('click', () => {
+        carrinho.classList.remove('visible');
+        const carrossel = document.getElementById('carrossel');
+        carrossel.classList.remove('reduced');
+    });
 });
 
 // Função para buscar filmes
@@ -66,14 +80,13 @@ async function fetchFilmes() {
 }
 
 // Função para comprar ingresso
-let cartItemCount = 0; // Variável global para rastrear a contagem de itens no carrinho
-
 async function comprarIngresso(filmeId) {
     const response = await fetch(`http://localhost:3000/filmes/${filmeId}`);
     const filme = await response.json();
     const carrinhoMain = document.querySelector('.cart__main');
     const carrinhoItem = document.createElement('div');
     carrinhoItem.classList.add('cart__item');
+    carrinhoItem.dataset.id = filmeId; // Adiciona um identificador único ao item do carrinho
     const preco = filme.preco ? filme.preco : 0;
     const imagem = filme.imagem ? filme.imagem : 'https://via.placeholder.com/150';
     carrinhoItem.innerHTML = `
@@ -86,7 +99,7 @@ async function comprarIngresso(filmeId) {
                     <button class="cart__sub" onclick="alterarQuantidade(this, -1)">
                         <span class="material-symbols-outlined">remove</span>
                     </button>
-                    <span>1</span>
+                    <p id="quantity">1</p>
                     <button class="cart__add" onclick="alterarQuantidade(this, 1)">
                         <span class="material-symbols-outlined">add</span>
                     </button>
@@ -96,19 +109,14 @@ async function comprarIngresso(filmeId) {
     `;
     carrinhoMain.appendChild(carrinhoItem);
 
-    // Incrementar a contagem de itens no carrinho
-    cartItemCount++;
+    // Atualizar a quantidade de itens no carrinho
     updateCartItemCount();
 
     // Atualizar o valor total do carrinho
     const cartTotalPrice = document.getElementById('cartTotalPrice');
-    const totalPrice = parseFloat(cartTotalPrice.textContent.replace('R$', '').replace(',', '.')) + preco;
+    let totalPrice = parseFloat(cartTotalPrice.textContent.replace('R$', '').replace(',', '.')) || 0;
+    totalPrice += preco;
     cartTotalPrice.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
-}
-
-function updateCartItemCount() {
-    const cartItemCountElement = document.getElementById('cartItemCount');
-    cartItemCountElement.textContent = `Seu carrinho tem: ${cartItemCount} ${cartItemCount === 1 ? 'item' : 'itens'}`;
 }
 
 // Adicionar eventos aos botões "Comprar"
@@ -145,9 +153,12 @@ document.getElementById('shoppingCartIcon').addEventListener('click', function()
 });
 
 function alterarQuantidade(button, delta) {
-    const qtySpan = button.parentElement.querySelector('span');
+    const qtySpan = button.parentElement.querySelector('p');
     let qty = parseInt(qtySpan.textContent) + delta;
-    if (qty < 1) qty = 1;
+    if (qty < 1) {
+        removerItem(button);
+        return;
+    }
     qtySpan.textContent = qty;
 
     const precoElement = button.closest('.cart__item').querySelector('.cart__price');
@@ -156,7 +167,37 @@ function alterarQuantidade(button, delta) {
     let totalPrice = parseFloat(cartTotalPrice.textContent.replace('R$', '').replace(',', '.')) || 0;
 
     totalPrice += delta * preco;
+    if (totalPrice < 0) totalPrice = 0;
     cartTotalPrice.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+
+    // Atualizar a quantidade de itens no carrinho
+    updateCartItemCount();
+
+    // Exibir mensagem de "+1" ou "-1"
+    const message = document.createElement('div');
+    message.classList.add('cart__message');
+    message.textContent = delta > 0 ? '+1' : '-1';
+    button.parentElement.appendChild(message);
+
+    setTimeout(() => {
+        message.remove();
+    }, 1000);
+}
+
+function removerItem(button) {
+    const item = button.closest('.cart__item');
+    const precoElement = item.querySelector('.cart__price');
+    const preco = parseFloat(precoElement.textContent.replace('R$', '').replace(',', '.')) || 0;
+    const qtySpan = item.querySelector('.cart__qty p');
+    const qty = parseInt(qtySpan.textContent) || 0;
+    const cartTotalPrice = document.getElementById('cartTotalPrice');
+    let totalPrice = parseFloat(cartTotalPrice.textContent.replace('R$', '').replace(',', '.')) || 0;
+
+    totalPrice -= qty * preco;
+    if (totalPrice < 0) totalPrice = 0;
+    cartTotalPrice.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+
+    item.remove();
 
     // Atualizar a quantidade de itens no carrinho
     updateCartItemCount();
@@ -165,11 +206,11 @@ function alterarQuantidade(button, delta) {
 function updateCartItemCount() {
     const cartItems = document.querySelectorAll('.cart__item');
     const itemCount = Array.from(cartItems).reduce((count, item) => {
-        const qty = parseInt(item.querySelector('.cart__qty span').textContent) || 0;
+        const qty = parseInt(item.querySelector('.cart__qty p').textContent) || 0;
         return count + qty;
     }, 0);
     const cartItemCount = document.getElementById('cartItemCount');
-    cartItemCount.textContent = `Seu carrinho tem: ${itemCount} ${itemCount === 1 ? 'item' : 'itens'}`;
+    cartItemCount.textContent = `Seu carrinho tem ${itemCount} ${itemCount === 1 ? 'item' : 'itens'}`;
 }
 
 document.getElementById('shoppingCartIcon').addEventListener('click', () => {
@@ -178,10 +219,14 @@ document.getElementById('shoppingCartIcon').addEventListener('click', () => {
 });
 
 function toggleCart() {
-    var carrinho = document.getElementById('carrinho');
+    const carrinho = document.getElementById('carrinho');
+    const carrossel = document.getElementById('carrossel');
+
     if (carrinho.classList.contains('visible')) {
         carrinho.classList.remove('visible');
+        carrossel.classList.remove('reduced');
     } else {
         carrinho.classList.add('visible');
+        carrossel.classList.add('reduced');
     }
 }
